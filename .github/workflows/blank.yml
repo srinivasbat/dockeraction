@@ -15,17 +15,14 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v2
 
-      - name: find working directory
-        run: sudo pwd
-      - name: Find Directory
-        run: find ${{ github.workspace }}/dockeraction/dockeraction
-          
-      - name: give +x permission
-        run: chmod +x scripth.sh
-        
-      - name: run the scripth
-        run: sh scripth.sh
-        
+      - name: Deploy to Server 1
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}
+
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
@@ -33,6 +30,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo docker --version
-            sudo docker ps
-            sudo docker images
+            sudo yum -y update
+            sudo yum install -y apache2
+            sudo systemctl start apache2
+            sudo systemctl enable apache2
