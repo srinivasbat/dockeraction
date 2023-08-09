@@ -45,7 +45,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             sudo yum -y update
-            sudo yum -y install nginx
+            sudo yum -y install nginx1
             sudo systemctl start nginx
             sudo systemctl enable nginx
             sudo cp index.html /usr/share/nginx/html
