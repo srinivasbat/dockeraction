@@ -22,6 +22,11 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
+
+      - name: Print Working Directory
+        run: |
+          WORKING_DIR="/github/workspace"
+          echo "Working Directory: $WORKING_DIR"
           
       - name: Download Tomcat
         run: |
