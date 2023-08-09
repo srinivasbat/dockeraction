@@ -26,7 +26,14 @@ jobs:
       - name: Download Tomcat
         run: |
           sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz
-          sudo tar -xvf apache-tomcat-9.0.78.tar.gz
+          
+      - name: Show Working Directory
+        run: |
+          echo "Working Directory: ${{ github.workspace }}"
+          
+      - name: List Files in Working Directory
+        run: |
+          ls -la ${{ github.workspace }}
           
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
