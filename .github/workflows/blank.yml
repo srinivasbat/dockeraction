@@ -22,7 +22,12 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
-
+          
+      - name: Download Tomcat
+        run: |
+          sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz
+          sudo tar -xvf apache-tomcat-9.0.78.tar.gz
+          
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
@@ -30,7 +35,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo yum -y update
-            sudo yum install -y apache2
-            sudo systemctl start apache2
-            sudo systemctl enable apache2
+            sudo pwd
+        
