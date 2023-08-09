@@ -31,4 +31,4 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             sudo docker --version
-            sudo docker run -itd --name centos
+            sudo docker run -itd --name cen centos:latest
