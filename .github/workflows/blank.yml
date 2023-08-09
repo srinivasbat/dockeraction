@@ -14,15 +14,10 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-
-      - name: Deploy to Server 1
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.HOST_DNS }}
-          REMOTE_USER: ${{ secrets.USERNAME }}
-          TARGET: ${{ secrets.TARGET_DIR }}
-
+        
+      - name: Check Docker version
+        run: sh script.sh
+        
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
@@ -32,3 +27,6 @@ jobs:
           script: |
             sudo docker --version
             sudo docker run -itd --name cen centos:latest
+            
+      - name: Check Docker version
+        run: sh scripth.sh
