@@ -23,7 +23,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             sudo docker --version
-            sudo docker run -itd --name srini centos:latest
+            sudo docker ps
+            sudo docker images
             
       - name: Check Docker version
         run: sh scripth.sh
