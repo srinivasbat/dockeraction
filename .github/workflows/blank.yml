@@ -17,6 +17,8 @@ jobs:
 
       - name: find working directory
         run: sudo pwd
+      - name: Find Directory
+        run: find ${{ github.workspace }}/dockeraction/dockeraction
           
       - name: give +x permission
         run: chmod +x scripth.sh
