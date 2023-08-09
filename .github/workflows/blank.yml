@@ -25,8 +25,9 @@ jobs:
           
       - name: Download Tomcat
         run: |
-          sudo wget -O /home/ec2-user/apache-tomcat-9.0.78.tar.gz https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz
-          
+          sudo mkdir ~/tom-cat
+          sudo wget -O ~/tom-cat/apache-tomcat-9.0.78.tar.gz https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz
+    
       - name: Show Working Directory
         run: |
           echo "Working Directory: ${{ github.workspace }}"
