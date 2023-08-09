@@ -7,18 +7,25 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Deploy to Server 1
+      uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}
+
     - name: check docker version
-      run: sudo docker --version
+      run: docker --version
 
     - name: run docker container
-      run: sudo docker pull centos
+      run: docker pull centos
 
     - name: run docker container
-      run: sudo docker run -itd --name centos centos
-
+      run: docker run -itd --name centos centos
