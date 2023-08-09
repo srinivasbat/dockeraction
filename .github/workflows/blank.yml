@@ -44,10 +44,9 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo yum -y update
-            sudo yum -y install nginx1
-            sudo systemctl start nginx
-            sudo systemctl enable nginx
-            sudo cp index.html /usr/share/nginx/html
-
-        
+            sudo echo "hi git" > index.html
+            sudo amazon-linux-extras enable httpd
+            sudo yum -y install httpd
+            sudo systemctl start httpd
+            sudo systemctl enable httpd
+            sudo cp index.html /var/www/html/
