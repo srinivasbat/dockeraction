@@ -14,6 +14,15 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
+
+      - name: find working directory
+        run: sudo pwd
+          
+      - name: give +x permission
+        run: chmod +x scripth.sh
+        
+      - name: run the scripth
+        run: sh scripth.sh
         
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
@@ -25,12 +34,3 @@ jobs:
             sudo docker --version
             sudo docker ps
             sudo docker images
-
-      - name: find working directory
-        run: sudo pwd
-          
-      - name: give +x permission
-        run: chmod +x scripth.sh
-        
-      - name: run the scripth
-        run: sh scripth.sh
