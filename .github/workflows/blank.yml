@@ -7,17 +7,18 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
     - name: check docker version
-      run: docker --version
+      run: sudo docker --version
 
     - name: run docker container
-      run: docker run -itd --name nginx -p 80:80 nginx
+      run: sudo docker pull centos
 
-    - name: execute shell script
-      run: sh script.sh
+    - name: run docker container
+      run: sudo docker run -itd --name centos centos
+
